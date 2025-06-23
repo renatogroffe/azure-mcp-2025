@@ -12,3 +12,10 @@ Será necessária a criação de um Service Principal, em que para efeito de tes
 ```bash
 az ad sp create-for-rbac --name testes-mcp-azure --role Reader --scopes /subscriptions/SUBSCRIPTION_ID
 ```
+
+
+Criando o server MCP via **docker run**:
+
+```bash
+docker run -d --env-file .env -p 5008:5008 renatogroffe/azure-mcp-2025-06:8 --transport sse
+```
