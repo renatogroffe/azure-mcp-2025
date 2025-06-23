@@ -1,0 +1,7 @@
+services:
+  azure-mcp:
+    image: renatogroffe/azure-mcp-2025-06:8
+    env_file: .env
+    ports:
+      - "5008:5008"
+    command: ["--transport", "sse"]
