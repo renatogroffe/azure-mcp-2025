@@ -6,3 +6,9 @@ Imagem pública mais recente para testes:
 ```
 renatogroffe/azure-mcp-2025-06:8
 ```
+
+Será necessária a criação de um Service Principal, em que para efeito de testes associei permissões como **reader**:
+
+```bash
+az ad sp create-for-rbac --name testes-mcp-azure --role Reader --scopes /subscriptions/SUBSCRIPTION_ID
+```
