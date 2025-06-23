@@ -49,3 +49,7 @@ MCP Server em execução e integração para o mesmo já configurada no Visual S
 Visualizando os logs gerados via Docker Desktop:
 
 ![Logs no Docker Desktop](img/logs-docker-desktop-01.png)
+
+Exemplo de uso com o chat do GitHub Copilot (com o uso de **Agent** selecionado):
+
+![GitHub Copilot Chat 1](img/chat-01.png)
