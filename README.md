@@ -13,6 +13,18 @@ Será necessária a criação de um Service Principal, em que para efeito de tes
 az ad sp create-for-rbac --name testes-mcp-azure --role Reader --scopes /subscriptions/SUBSCRIPTION_ID
 ```
 
+Que produzirá como retorno um JSON com as configurações da App Registration que representa o Service Principal:
+
+```json
+{
+  "appId": "ID DA APP REGISTRATION",
+  "displayName": "testes-mcp-azure",
+  "password": "SECRET DA APP REGISTRATION",
+  "tenant": "ID DO TENANT EM QUE SE ENCONTRA A SUBSCRIPTION"
+}
+```
+
+Essas configurações deverão então ser informadas nas variáveis **x**, **y** e **z**, que se encontram no **arquivo .env** (pasta **scripts**).
 
 Criando o server MCP via **docker run**:
 
