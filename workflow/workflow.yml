@@ -1,0 +1,66 @@
+name: azure-mcp-experiments
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  IMAGE_DOCKERHUB: ${{ secrets.DOCKERHUB_USERNAME }}/azure-mcp-2025-06
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clonar Repo do Azure MCP Server
+        run: git clone https://github.com/Azure/azure-mcp.git azure-mcp
+
+      - name: Exibir conteudo dos diretorios
+        run: |
+          echo
+          pwd
+          echo
+          ls -l
+          echo
+          echo
+          cd azure-mcp
+          pwd
+          echo
+
+      - name: Exibir conteudo do Dockerfile que sera empregado no build da imagem
+        run: |
+          echo
+          cd azure-mcp
+          pwd
+          echo '***** Conteudo do arquivo Dockerfile *****'
+          echo '---'
+          echo
+          cat Dockerfile
+          ls -l
+
+      - name: Build da imagem
+        run: |
+          cd azure-mcp
+          docker build . --file Dockerfile --tag ${{ env.IMAGE_DOCKERHUB }}:latest
+
+      - name: Gerar tag de imagem usando o numero de execucao do workflow
+        run: docker tag ${{ env.IMAGE_DOCKERHUB }}:latest ${{ env.IMAGE_DOCKERHUB }}:$GITHUB_RUN_NUMBER
+
+      - name: Exibir imagens no ambiente
+        run: docker images
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3.4.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          
+      - name: Geração de tag com número do Build e Push no Docker Hub
+        run: |
+          docker tag ${{ env.IMAGE_DOCKERHUB }}:latest ${{ env.IMAGE_DOCKERHUB }}:$GITHUB_RUN_NUMBER
+          docker push --all-tags ${{ env.IMAGE_DOCKERHUB }}
