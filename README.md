@@ -9,7 +9,7 @@ renatogroffe/azure-mcp-2025-06:8
 
 Por qual razão criei uma imagem, ao invés de usar a versão que está no catálogo de MCP Server da própria Docker?
 1) A própria Microsoft recomenda isto na [documentação](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-docker-install-steps-optional) do projeto.
-2) O projeto está em constante evolução e as imagens do próprio catálogo MCP no Docker Hub podem náo estar atualizadas com melhorias recentes. Ao tentar usar a documentação da Microsoft não obtive nenhuma referência quanto a executar o container com os parâmetros **--transport sse** como indicado mais adiante; tentei reproduzir as mesmas configurações com a imagem no Docker Hub e não obtive sucesso. Acabei por ajudar no report deste problema em uma [**issue**](https://github.com/Azure/azure-mcp/issues/434) que estava aberta no GitHub.
+2) O projeto está em constante evolução e as [imagens](https://hub.docker.com/r/mcp/azure) do próprio catálogo MCP no Docker Hub podem náo estar atualizadas com melhorias recentes. Ao tentar usar a documentação da Microsoft não obtive nenhuma referência quanto a executar o container com os parâmetros **--transport sse** como indicado mais adiante; tentei reproduzir as mesmas configurações com a imagem no Docker Hub e não obtive sucesso. Acabei por ajudar no report deste problema em uma [**issue**](https://github.com/Azure/azure-mcp/issues/434) que estava aberta no GitHub.
 
 Será necessária a criação de um Service Principal, em que para efeito de testes associei permissões como **reader**:
 
