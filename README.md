@@ -17,6 +17,10 @@ Será necessária a criação de um Service Principal, em que para efeito de tes
 az ad sp create-for-rbac --name testes-mcp-azure --role Reader --scopes /subscriptions/SUBSCRIPTION_ID
 ```
 
+O uso da role **Reader** pode não ser suficiente em algumas operações. Para consultas envolvendo detalhes sobre blobs de uma Storage Account ou chaves/valores de um Azure App Configuration utilizei as roles:
+- Storage Blob Data Reader
+- App Configuration Data Reader
+
 Que produzirá como retorno um JSON com as configurações da App Registration que representa o Service Principal:
 
 ```json
